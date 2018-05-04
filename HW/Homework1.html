@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+body {
+	color: #4CAF50;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-size: 26px;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b4e391+0,61c419+50,b4e391+100;Green+3D */
+	background: #b4e391; /* Old browsers */
+	background: -moz-linear-gradient(left, #b4e391 0%, #61c419 50%, #b4e391 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #b4e391 0%, #61c419 50%, #b4e391 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #b4e391 0%, #61c419 50%, #b4e391 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4e391', endColorstr='#b4e391', GradientType=1); /* IE6-9 */
+}
+.column {
+	float: left;
+	width: 35%;
+}
+/* Clear floats after the columns */
+.row:after {
+	display: table;
+	clear: both;
+	float: right;
+}
+button {
+	background-color: #4CAF50; /* Green */
+	border: 1px solid green;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	float: left;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+}
+.slider {
+	-webkit-appearance: none;
+	width: 90%;
+	height: 15px;
+	border-radius: 5px;
+	background: #d3d3d3;
+	outline: none;
+	opacity: 0.7;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+}
+ .slider::-webkit-slider-thumb {
+ -webkit-appearance: none;
+ appearance: none;
+ width: 25px;
+ height: 25px;
+ border-radius: 50%;
+ background: #4CAF50;
+ cursor: pointer;
+}
+ .slider::-moz-range-thumb {
+ width: 25px;
+ height: 25px;
+ border-radius: 50%;
+ background: #4CAF50;
+ cursor: pointer;
+}
+/* The switch - the box around the slider */
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+	display: none;
+}
+/* The slider */
+.pippo {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+.pippo:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+input:checked + .pippo {
+	background-color: #4CAF50;
+}
+input:focus + .pippo {
+	box-shadow: 0 0 1px #4CAF50;
+}
+input:checked + .pippo:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+/* Rounded sliders */
+.pippo.round {
+	border-radius: 34px;
+}
+.pippo.round:before {
+	border-radius: 50%;
+}
+input[type=text] {
+	width: 10%;
+	padding: 16px 20px;
+	border: none;
+	border-radius: 4px;
+	background-color: #DCDCDC;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-size: 14px;
+	text-align: center;
+}
+</style>
+<head>
+<meta charset="UTF-8">
+<title>WebGL 3D Cube</title>
+<meta name="description" content="Building a 3D cube in WebGL">
+<meta name="keywords" content="HTML,CSS,WebGL,JavaScript">
+<meta name="author" content="Simone Faricelli">
+</head>
+<body>
+<div class="row">
+  <div class="column">
+    <button class="btn" id = "ButtonX">Rotate X</button>
+    <button class="btn" id = "ButtonY">Rotate Y</button>
+    <button class="btn" id = "ButtonZ">Rotate Z</button>
+    <button class="btn" id = "ButtonT">Toggle Rotation</button>
+    
+    <!-- point 1 -->
+    <button class="btn" id = "ButtonI">Invert Rotation</button>
+    <input type='text' id='textbox_id'>
+    <input type='text' id='textbox_id2'>
+    <!-- point 5 -->
+    <button class="btn" id = "ButtonP">Change Projection</button>
+    
+    <!-- point 3 -->
+    <div> Scaling
+      <input type='text' id='scaleBox' value='1'>
+      <input class="slider" id="SliderS" type="range" min="0.5" max="2" step="0.1" value="1" />
+    </div>
+    <div> XTraslation
+      <input type='text' id='XtranslationBox' value='0'>
+      <input class="slider" id="SliderXT" type="range" min="-1" max="1" step="0.1" value="0" />
+    </div>
+    <div> YTraslation
+      <input type='text' id='YtranslationBox' value='0'>
+      <input class="slider" id="SliderYT" type="range" min="-1" max="1" step="0.1" value="0" />
+    </div>
+    <div> ZTraslation
+      <input type='text' id='ZtranslationBox' value='0'>
+      <input class="slider" id="SliderZT" type="range" min="-1" max="1" step="0.1" value="0" />
+    </div>
+    <div> Near
+      <input type='text' id='nearBox' value='0.3'>
+      <input class="slider" id="SliderN" type="range" min=".01" max="3" step="0.1" value="0.3" />
+    </div>
+    <div> Far
+      <input type='text' id='farBox' value='5.0'>
+      <input class="slider" id="SliderF" type="range" min="1.0" max="10.0" step="0.2" value="5.0" />
+    </div>
+    <div> Shaders
+      <input type='text' id='shaderBox' value='Phong'>
+      <input class ="slider" id="ButtonS" type="range" min="-1" max="1" step="2" value="1" />
+    </div>
+    <div> XLight
+      <input type='text' id='XLightBox' value='0.0'>
+      <input class="slider" id="SliderXL" type="range" min="-10" max="10" step="0.1" value="0.0" />
+    </div>
+    <div> YLight
+      <input type='text' id='YLightBox' value='0.0'>
+      <input class="slider" id="SliderYL" type="range" min="-10" max="10" step="0.1" value="0.0" />
+    </div>
+    <div> ZLight
+      <input type='text' id='ZLightBox' value='5.0'>
+      <input class="slider" id="SliderZL" type="range" min="-10" max="10" step="0.1" value="5.0" />
+    </div>
+    <!-- Rounded switch 
+    <label class="switch">
+      <input type="checkbox" id="prova">
+      <span class="pippo round"></span> </label>-->
+    <script id="vertex-shader" type="x-shader/x-vertex">
+	
+attribute  vec4 vPosition;
+//normal for each vector
+attribute  vec3 vNormal;
+varying vec3 fNormal;
+varying vec4 fColor;
+//punto 7
+//varying float fVarShader;
+uniform bool button;
+varying vec3 E, L, N;
+
+uniform vec4 ambientProduct, diffuseProduct, specularProduct;
+uniform vec4 lightPosition;
+uniform float shininess;
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+void main()
+{
+
+	fNormal = mat3(modelViewMatrix) * vNormal;
+    vec3 pos = -(modelViewMatrix * vPosition).xyz;
+    
+    //fixed light postion
+    vec3 light = lightPosition.xyz;
+    L = normalize( light - pos );
+	E = normalize( -pos );
+		vec3 H = normalize( L + E );
+		vec4 NN = vec4(vNormal,0);
+
+		// Transform vertex normal into eye coordinates
+		N = normalize( (modelViewMatrix*NN).xyz);
+	
+	//punto7
+	if (button){
+		
+
+		// Compute terms in the illumination equation
+		vec4 ambient = ambientProduct;
+
+		float Kd = max( dot(L, N), 0.0 );
+		vec4  diffuse = Kd*diffuseProduct;
+
+		float Ks = pow( max(dot(N, H), 0.0), shininess );
+		vec4  specular = Ks * specularProduct;
+
+		if( dot(L, N) < 0.0 ) {
+			specular = vec4(0.0, 0.0, 0.0, 1.0);
+		} 
+
+		gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+		fColor = ambient + diffuse + specular;
+		
+		//a means opacity
+		fColor.a = 1.0;
+	} else {
+	
+		gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+		
+	}
+	
+	//fVarShader = varShader;
+    //fColor = vColor;
+    //gl_Position.z = -gl_Position.z;
+}
+</script> 
+    <script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+varying vec4 fColor;
+
+uniform vec4 AmbientProduct;
+uniform vec4 DiffuseProduct;
+uniform vec4 SpecularProduct;
+uniform float Shininess;
+varying vec3 E, L, N;
+
+uniform bool button;
+uniform bool Button;
+
+void main()
+{
+ if (button){
+  gl_FragColor = fColor;
+ } else {
+ vec4 fColor2;
+ vec3 H = normalize( L + E );
+ vec4 Ambient = AmbientProduct;
+ float kd = max( dot(L, N), 0.0 );
+ vec4 Diffuse = kd*DiffuseProduct;
+ float ks = pow( max(dot(N, H), 0.0), Shininess );
+ vec4 Specular = ks * SpecularProduct;
+ if( dot(L, N) < 0.0 ) Specular = vec4(0.0, 0.0, 0.0, 1.0);
+ fColor2 = Ambient + Diffuse + Specular;
+ fColor2.a = 1.0;
+ gl_FragColor = fColor2;
+ }
+	//gl_FragColor = fColor;	
+    //fVarShader = varShader;
+}
+</script> 
+    <script type="text/javascript" src="../Common/webgl-utils.js"></script> 
+    <script type="text/javascript" src="../Common/initShaders.js"></script> 
+    <script type="text/javascript" src="../Common/MV.js"></script> 
+    <script type="text/javascript" src="Homework1.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+  </div>
+  <div class="column">
+    <canvas id="gl-canvas" width="1024" height="1024"> Oops ... your browser doesn't support the HTML5 canvas element </canvas>
+  </div>
+</div>
+</body>
+</html>
