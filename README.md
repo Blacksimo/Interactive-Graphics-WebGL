@@ -3,7 +3,7 @@
 ## Homework 1 - 3D Cube
 
 <p align="center">
-<a href="https://blacksimo.github.io/HW1/Homework1.html">###Preview</a>
+##<a href="https://blacksimo.github.io/HW1/Homework1.html">Preview</a>
 </p>
 <p align="center">
 <img src="https://github.com/Blacksimo/Interactive-Graphics-WebGL/blob/master/Homework1/Report/cube.png" width="200"/>
@@ -26,7 +26,7 @@
 ## Homework 2 - Dog Animation
 
 <p align="center">
-<a href="https://blacksimo.github.io/HW2/Homework2.html">###Preview</a>
+##<a href="https://blacksimo.github.io/HW2/Homework2.html">Preview</a>
 </p>
 <p align="center">
 <img src="https://github.com/Blacksimo/Interactive-Graphics-WebGL/blob/master/Homework2/Report/dog.png" width="200"/>
