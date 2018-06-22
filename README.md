@@ -6,7 +6,7 @@
 
 <a href="https://blacksimo.github.io/HW1/Homework1.html">Preview</a>.
 
-<img src="Homework1/Report/cube.PNG" width="200"/>
+<img src="https://github.com/Blacksimo/Interactive-Graphics-WebGL/blob/master/Homework1/Report/cube.png" width="200"/>
 </p>
 
 1 - Add a button that changes the direction of the current rotation.
@@ -29,7 +29,7 @@
 
 <a href="https://blacksimo.github.io/HW2/Homework2.html">Preview</a>.
 
-<img src="Homework2/Report/dog.PNG" width="200"/>
+<img src="https://github.com/Blacksimo/Interactive-Graphics-WebGL/blob/master/Homework2/Report/dog.png" width="200"/>
 </p>
 
 1 - Create a hierarchical model of a (simplified) dog, composed of the body, 4 legs (each one composed of 2 independent components, upper and lower leg), head and tail. All components are cubes, use the cube function present in the file
